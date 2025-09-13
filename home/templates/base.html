@@ -331,72 +331,7 @@ display: block;
         </section>
     </div>
     <!--end main container-->
-    <div class="modal enquire-modal" data-bs-dismissable="modal" id="enquire-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title text-center">Enquire Now</h4>
-                    <button type="button" class="btn btn-md close modal-close" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                </div>
-                <div class="modal-body">
-                    <a class="modal-logo text-center d-block mb-4" href="#" id="modal">
-                        <img src="{{rs.logo.url}}" alt="" style="height: 60px; padding: 1px;" width="160">
-                    </a>
-                    <!--this content fetch from JS-->
-                <form id="main-popup" name="modal-form" method="post" action="/submit-form/">
-                       {% csrf_token %}
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12 forms-input-fields">
-                                <i class="fa-solid fa-user"></i>
-                                <input type="text" name="name" class="form-control" autofocus required placeholder="Name*" required> 
-                                <span name="nameError" class="error">Name field is required</span>
-                            </div>
-                            <div class="col-lg-6 col-sm-12 forms-input-fields">
-                                <i class="fa-solid fa-phone"></i>
-                                <input type="number" name="mobile" id="mobile" class="form-control" required placeholder="Mobile*" required oninput="limitDigits(this, 10)">
-                                <span name="nameError" class="error">Mobile field is required</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12 forms-input-fields">
-                                <i class="fa-solid fa-envelope"></i>
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
-                            </div>
-                        </div>
-                        <div>
-                            <input type="hidden" name="form_name" id="form_name" class="form-control form_name" value="Auto Modal">
-                            <input type="hidden" id="website_url" class="website_url" name="website_url">
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12 forms-input-fields"  required>
-                                <div class="form-group acceptance">
-                                    <label class="form-check-label">
-										<input type="checkbox" checked class="form-check-input">
-										<span class="text on-rera-">I Consent to The Processing of Provided Data According To <a href="Privacy-Policy.html" style="color:#007bff"> Privacy Policy | </a> <a href="terms-conditions.html" style="color:#007bff;"> Terms &amp; Conditions</a>, I Authorize Prop Solutions 4 U Pvt. Ltd. and its representatives to Call, SMS, Email or WhatsApp Me About Its Products and Offers. This Consent Overrides Any Registration For DNC/NDNC. </span>
-										<span class="text non-rera">Please be informed that this website is not intended to facilitate any sales transactions. I understand and acknowledge that the project I am interested in hasn't yet secured RERA clearance. The primary purpose of this website is to generate interest and gather information. By providing my data, I consent to its use in accordance with the <a href="Privacy-Policy.html" style="color:#007bff"> Privacy Policy | </a> <a href="terms-conditions.html" style="color:#007bff;"> Terms &amp; Conditions</a></span>
-									</label>
-                                </div>
-                                <button type="submit" name="Submit" class="btn mx-auto d-block form-btn1 on-rera" onclick="submitForm(event, 'modal-form')">Enquire Now</button>
-                                
-                            </div>
-                        </div>
-                              
-                        <!-- Math Captcha -->
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 forms-input-fields">
-                                    <label for="captchaInput" style="font-weight: bold;">
-                                        <span id="num1"></span> + <span id="num2"></span> = ?
-                                    </label>
-                                    <input type="number" id="captchaInput" class="form-control" placeholder="Enter the answer" required>
-                                    <span id="captchaError" class="error" style="color:red; display:none;">Incorrect Captcha</span>
-                                </div>
-                            </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>

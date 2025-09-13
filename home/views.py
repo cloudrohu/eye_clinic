@@ -33,11 +33,13 @@ def index(request):
     welcome = Welcometo.objects.all().order_by('-id')[0:1]  
     location = Location.objects.all().order_by('-id')     
     bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
     unique_Selling_Proposition = Unique_Selling_Proposition.objects.all() 
     amenities = Service.objects.all()
     gallery = Gallery.objects.all().order_by('-id')
 
     context={
+        'doctor':doctor,
         'location':location,
         'bookingopen':bookingopen,
         'welcome':welcome,
