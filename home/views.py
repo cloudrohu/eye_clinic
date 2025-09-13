@@ -27,33 +27,25 @@ from django.utils.decorators import method_decorator
 
 def index(request):
     header = Setting.objects.all().order_by('-id')[0:1]  
-    reraaditional = Reraaditional.objects.all().order_by('-id')[0:1]  
     slider = Web_Slider.objects.all().order_by('?')[0:6]  
     overview = Overview.objects.all().order_by('-id')[0:1]  
     about_us = About_Us.objects.all().order_by('-id')[0:1]  
     welcome = Welcometo.objects.all().order_by('-id')[0:1]  
     location = Location.objects.all().order_by('-id')     
     bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
-    maharera = Maharera.objects.all().order_by('-id')[0:1]  
     unique_Selling_Proposition = Unique_Selling_Proposition.objects.all() 
-    configuration = Configuration.objects.all()
-    amenities = Amenities.objects.all()
-    gallery = Gallery.objects.all().order_by('-id')[0:4] 
-    WhyInvest = Why_Invest.objects.all()
+    amenities = Service.objects.all()
+    gallery = Gallery.objects.all().order_by('-id')
 
     context={
         'location':location,
-        'maharera':maharera,
-        'reraaditional':reraaditional,
         'bookingopen':bookingopen,
-        'WhyInvest':WhyInvest,
         'welcome':welcome,
         'header':header,
         'slider':slider,
         'overview':overview,
         'about_us':about_us,
         'unique_Selling_Proposition':unique_Selling_Proposition,
-        'configuration':configuration,
         'amenities':amenities,
         'gallery':gallery,
     }
@@ -80,7 +72,7 @@ def submit_form(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('mobile')
-        
+ 
 
          # Save to DB
         Response.objects.create(name=name, email=email, phone=phone)

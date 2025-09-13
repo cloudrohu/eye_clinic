@@ -19,7 +19,6 @@ class Setting(models.Model):
     description = models.CharField(max_length=255,)
     configuration_bg = models.ImageField(upload_to='logo/')
     logo = models.ImageField(upload_to='logo/',)
-    logo_2 = models.ImageField(upload_to='logo/')
     icon = models.ImageField(upload_to='images/',)
     virtual_site_visit = models.ImageField(upload_to='images/',)
     color = models.CharField(max_length=150)
@@ -49,7 +48,6 @@ class Web_Slider(models.Model):
 
 class Overview(models.Model):
     web_image = models.ImageField(upload_to='overviewimage/')
-    mobile_image = models.ImageField(upload_to='overview/')
     title = models.CharField(max_length=150)
     details= models.TextField(blank=False,max_length=5500)
     
@@ -70,9 +68,7 @@ class About_Us(models.Model):
         verbose_name_plural='4. About_Us'
 
 class Unique_Selling_Proposition(models.Model):
-    icone = models.ImageField(upload_to='uspimage/')
     title = models.CharField(max_length=150)
-    icone2 = models.ImageField(upload_to='uspimage/',blank=True,null=True)
     title2 = models.CharField(max_length=150,blank=True,null=True)
     
     def __str__(self):
@@ -81,22 +77,9 @@ class Unique_Selling_Proposition(models.Model):
     class Meta:
         verbose_name_plural='5. Unique Selling Proposition'
 
-class Configuration(models.Model):
-    typology = models.CharField(max_length=150)
-    rera_carpet_area = models.CharField(max_length=150)
-    price = models.CharField(max_length=150)
-    
-    def __str__(self):
-        return self.typology    
-        
-    class Meta:
-        verbose_name_plural='6. Configuration'
-
-class Amenities(models.Model):
+class Service(models.Model):
     icone = models.ImageField(upload_to='amenitiesimage/')
     title = models.CharField(max_length=150)
-    icone2 = models.ImageField(upload_to='uspimage/',blank=True,null=True)
-    title2 = models.CharField(max_length=150,blank=True,null=True)
     
     def __str__(self):
         return self.title    
@@ -127,7 +110,7 @@ class Bookingopen(models.Model):
     flexipay_for_first = models.CharField(max_length=255,)
     luxurious = models.CharField(max_length=255,)
     priceing = models.CharField(max_length=255,)
-    
+ 
     
     def __str__(self):
         return self.project_name    
@@ -156,39 +139,31 @@ class Location(models.Model):
     class Meta:
         verbose_name_plural='12. Location'
 
-class Maharera(models.Model):
-    qr_image = models.ImageField(upload_to='overviewimage/')
-    title = models.CharField(max_length=150)
-    maharera_no= models.CharField(blank=True,max_length=50)
-    details= models.CharField(blank=True,max_length=500)
-    
-    def __str__(self):
-        return self.title    
-        
-    class Meta:
-        verbose_name_plural='13. Maharera'
 
-class Reraaditional(models.Model):
-    project_registered = models.CharField(max_length=350)
-    Government_RERA_Authorised_Advertiser = models.CharField(max_length=500)
-    RERA_Project_Registration_No = models.CharField(max_length=500)
-    Site_Address = models.CharField(max_length=350)
-    Contact_Us = models.CharField(max_length=500)
-    Disclaimer = models.CharField(max_length=1500)
-    
-    def __str__(self):
-        return self.project_registered    
-        
+
+
+class About_Doctor(models.Model):
+    name = models.CharField(max_length=200)                # Doctor ka naam
+    designation = models.CharField(max_length=200)         # e.g., Eye Surgeon, Cardiologist
+    qualification = models.CharField(max_length=300)       # e.g., MBBS, MS, Fellowship etc.
+    experience = models.PositiveIntegerField()             # e.g., 16 (years)
+    specialization = models.TextField()                    # e.g., Cataract, Glaucoma, Oculoplasty
+    description = models.TextField()                       # Doctor ka about paragraph
+    photo = models.ImageField(upload_to="doctor_photos/")  # Profile photo
+    registration_no = models.CharField(max_length=100, blank=True, null=True) # e.g., MCI Reg. No
+    contact_no = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    clinic_address = models.TextField(blank=True, null=True)
+    timings = models.CharField(max_length=200, blank=True, null=True)  # e.g., Mon-Sat: 9AM–2PM
+    social_links = models.URLField(blank=True, null=True)  # e.g., LinkedIn/Website link
+
     class Meta:
-        verbose_name_plural='14. RERA Aditional'
-  
-class Why_Invest(models.Model):
-    title = models.CharField(max_length=350)
-    discripation = models.CharField(max_length=500)
-    
-    
+        verbose_name = "Doctor Profile"
+        verbose_name_plural = "Doctor Profiles"
+
     def __str__(self):
-        return self.title    
-        
-    class Meta:
-        verbose_name_plural='15. Why_Invest'
+        return self.name
+
+
+
+
