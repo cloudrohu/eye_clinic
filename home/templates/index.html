@@ -375,63 +375,10 @@
                 </div>
             </section>
                 
-<section class="bg-gray-50 py-12">
-  <div class="container mx-auto flex flex-col md:flex-row items-center">
-    
-    <!-- Doctor Image -->
-    <div class="flex-shrink-0">
-      <img class="w-64 h-64 rounded-full object-cover border-4 border-indigo-500 shadow-lg" 
-           src="{{ doctor.photo.url }}" 
-           alt="{{ doctor.name }}">
-    </div>
-
-    <!-- Doctor Info -->
-    <div class="md:ml-10 mt-6 md:mt-0 text-center md:text-left">
-      <h2 class="text-3xl font-bold text-gray-900">{{ doctor.name }}</h2>
-      <p class="text-indigo-600 font-medium text-lg">{{ doctor.designation }}</p>
-      <p class="mt-2 text-gray-700 italic">{{ doctor.qualification }}</p>
-
-      <p class="mt-4 text-gray-600 leading-relaxed">
-        {{ doctor.description }}
-      </p>
-
-      <div class="mt-4">
-        <span class="text-gray-800 font-semibold">Experience:</span>
-        <span class="text-gray-600">{{ doctor.experience }}+ years</span>
-      </div>
-
-      {% if doctor.registration_no %}
-      <p class="mt-2 text-sm text-gray-500">Reg. No: {{ doctor.registration_no }}</p>
-      {% endif %}
-
-      {% if doctor.clinic_address %}
-      <p class="mt-2 text-gray-600"><i class="fa-solid fa-location-dot text-indigo-600"></i> {{ doctor.clinic_address }}</p>
-      {% endif %}
-
-      {% if doctor.timings %}
-      <p class="mt-2 text-gray-600"><i class="fa-regular fa-clock text-indigo-600"></i> {{ doctor.timings }}</p>
-      {% endif %}
-
-      <div class="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">
-        {% if doctor.contact_no %}
-        <a href="tel:{{ doctor.contact_no }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700">
-          Call Now
-        </a>
-        {% endif %}
-
-        {% if doctor.email %}
-        <a href="mailto:{{ doctor.email }}" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg shadow hover:bg-gray-300">
-          Email
-        </a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
-
+            
             <!-- xxxxxxxxxxxx floor plan xxxxxxxxxxxx -->
            <section class="text-gray-600 body-font" id="testimonial">
             <div class="text-center mb-12">
