@@ -6,61 +6,50 @@
 <!-- End Google Tag Manager (noscript) -->
 {% for rs in header %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-<div class="container">
-    <!--<a class="navbar-brand" href="#">-->
-    <!--    <img src="img/calm-w.png" alt="">-->
-    <!--</a>-->
-    <a class="navbar-brand d-block d-lg-none" href="#">
-        <img src="{{rs.logo.url}}" class="logo-2" alt="Isle of Calm logo" style="height: 85px;">
-    </a>
+<header id="header" class="header sticky-top">
 
-    <div class="d-none d-sm-block main-nav-jd">
-        <a class="navbar-brand" href="#">
-            <img src="{{rs.logo.url}}" class="logo-2 cccs" alt="Isle of Calm logo" style="height: 85px;">
+    <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="d-none d-md-flex align-items-center">
+          <i class="bi bi-clock me-1"></i> Monday - Saturday, 8AM to 10PM
+        </div>
+        <div class="d-flex align-items-center">
+          <i class="bi bi-phone me-1"></i> Call us now +91 {{rs.cuntact_no}}
+        </div>
+      </div>
+    </div><!-- End Top Bar -->
+
+    <div class="branding d-flex align-items-center">
+
+      <div class="container position-relative d-flex align-items-center justify-content-end">
+        <a href="/" class="logo d-flex align-items-center me-auto">
+          <img src="{{rs.logo.url}}" alt="">
+          <!-- Uncomment the line below if you also wish to use a text logo -->
+          <!-- <h1 class="sitename">Medicio</h1>  -->
         </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#departments">Departments</a></li>
+            <li><a href="#doctors">Doctors</a></li>
+            
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <a class="cta-btn" href="/#appointment">Make an Appointment</a>
+
+      </div>
+
     </div>
 
-    <!-- 
-    <div class=" d-block d-sm-none">
-        <a class="navbar-brand" href="#">
-            <img src="{{rs.logo2.url}}" class="logo-2" alt="Isle of Calm logo">
-        </a>
-        <a href="tel:02268680081" class="phone-btn">
-            <img src="img/phone.png" alt="">
-            022 68680081</a>
-    </div>
-     -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+</header>    
 
 
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-            <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">Home</a></li> -->
-            <li class="nav-item"><a class="nav-link menu-link" href="#overview">Overview</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#configuration">Configuration</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#amenities">Amenities</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#gallery">Gallery</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#location">Location</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#contact">Contact</a></li>
-            <li class="nav-item"><a class="nav-link menu-link" href="#aboutus">About Us</a></li>
-            <!-- <li class="nav-item"><a href="tel:02268680081" class="phone-btn d-none d-sm-block">
-                    <img src="img/phone.png" alt="">   
-                    022 68680081</a> 
-            </li>-->
-            <!-- <li class="nav-item d-block d-lg-none"><a class="navbar-brand" href="#">
-                    <img src="img/logo.png" alt="">
-                </a></li> -->
-        </ul>
-    </div> 
-
-</div>
-</nav>
 {% endfor %}
 
 {% endblock body %}

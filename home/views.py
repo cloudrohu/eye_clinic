@@ -37,6 +37,8 @@ def index(request):
     unique_Selling_Proposition = Unique_Selling_Proposition.objects.all() 
     amenities = Service.objects.all()
     gallery = Gallery.objects.all().order_by('-id')
+    service = Service.objects.all().order_by('-id')[0:4] 
+
 
     context={
         'doctor':doctor,
@@ -50,6 +52,8 @@ def index(request):
         'unique_Selling_Proposition':unique_Selling_Proposition,
         'amenities':amenities,
         'gallery':gallery,
+        'service':service,
+
     }
     return render(request,'index.html',context)
 

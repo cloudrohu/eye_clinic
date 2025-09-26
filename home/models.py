@@ -141,7 +141,6 @@ class Location(models.Model):
 
 
 
-
 class About_Doctor(models.Model):
     name = models.CharField(max_length=200)                # Doctor ka naam
     designation = models.CharField(max_length=200)         # e.g., Eye Surgeon, Cardiologist
