@@ -95,7 +95,7 @@
         {% for rs in welcome %}
         <div class="row gy-4">
         <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-            <img src="{{rs.web_image.url}}" class="img-fluid" alt="" style="width: 1024px; height: 70vh;" >
+            <img src="{{rs.web_image.url}}" class="img-fluid" alt="" style="width: 550px; height: 550px; padding: 10px;" >
             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
         </div>
         <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
@@ -347,7 +347,7 @@
     <div class="swiper-wrapper align-items-center">
             {% for rs in gallery %}
 
-        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{{rs.web_image.url}}"><img src="{{rs.web_image.url}}" class="img-fluid" alt=""></a></div>
+        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{{rs.web_image.url}}"><img src="{{rs.web_image.url}}" style="height: 250px;" class="img-fluid" alt=""></a></div>
             {% endfor %}
     
     </div>
