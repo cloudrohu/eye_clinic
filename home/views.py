@@ -19,7 +19,10 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import translation
-
+from django.views.decorators.http import require_POST
+from django.contrib import messages
+from response.models import Appointment
+from datetime import datetime
 from home.models import *
 from response.models import Response
 from django.utils.decorators import method_decorator
@@ -34,10 +37,12 @@ def index(request):
     location = Location.objects.all().order_by('-id')     
     bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
-    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all() 
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()[0:3] 
     amenities = Service.objects.all()
     gallery = Gallery.objects.all().order_by('-id')
     service = Service.objects.all().order_by('-id')[0:4] 
+    stat = Stat.objects.all().order_by('-id')[0:4] 
+
 
 
     context={
@@ -53,6 +58,8 @@ def index(request):
         'amenities':amenities,
         'gallery':gallery,
         'service':service,
+        'stat':stat,
+
 
     }
     return render(request,'index.html',context)
@@ -108,3 +115,40 @@ All the best
         return redirect('thank_you')  # Make sure this name matches urls.py
 
     return render(request, 'base.html')
+
+
+@require_POST
+def submit_appointment(request):
+  
+    try:
+        # Get data from the POST request
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        date_str = request.POST.get('date')
+        message = request.POST.get('message', '')
+
+        # Convert the datetime-local string to a proper Python datetime object
+        # Example format: 2024-10-25T14:30
+        appointment_datetime = datetime.fromisoformat(date_str)
+
+        # Create and save the new Appointment object
+        Appointment.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            appointment_date=appointment_datetime,
+            message=message
+        )
+        
+        # Display success message (requires Django's messages framework)
+        messages.success(request, "thank-you.html")
+
+    except Exception as e:
+        # Display error message
+        print(f"Error saving appointment: {e}")
+        messages.error(request, "There was an error submitting your request. Please try again.")
+
+    # Redirect the user back to the page they came from (or a success page)
+    # Note: You might need to adjust the redirect URL based on your site structure
+    return redirect(request.META.get('HTTP_REFERER', '/'))

@@ -21,6 +21,8 @@ urlpatterns = [
     
     path('submit-form/', views.submit_form, name='submit_form'),
     path('thank-you/', lambda request: render(request, 'thank_you.html'), name='thank_you'),
+    path('thank-you-for-appointment/', lambda request: render(request, 'thank-you.html'), name='thank-you-for-appointment'),
+
    
     
     path('ckeditor/', include('ckeditor_uploader.urls')),

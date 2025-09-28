@@ -27,6 +27,7 @@ class Setting(models.Model):
     site_address= models.CharField(max_length=1150,blank=True,null=True)
     googletagmanager= models.CharField(max_length=1150,blank=True,null=True)
     privacy_policy = RichTextField(blank=True,null=True)
+
     
     
     def __str__(self):
@@ -80,12 +81,13 @@ class Unique_Selling_Proposition(models.Model):
 class Service(models.Model):
     icone = models.ImageField(upload_to='amenitiesimage/')
     title = models.CharField(max_length=150)
+    description = models.CharField(max_length=300, null=True ,blank=True)
     
     def __str__(self):
         return self.title    
         
     class Meta:
-        verbose_name_plural='7. Amenities'
+        verbose_name_plural='7. Service'
 
 class Gallery(models.Model):   
     web_image = models.ImageField(upload_to='galleryimage/')
@@ -163,6 +165,26 @@ class About_Doctor(models.Model):
     def __str__(self):
         return self.name
 
+class Stat(models.Model):
+    title = models.CharField(max_length=50)
+    icone = models.ImageField(upload_to="doctor_photos/")  # Profile photo
+    total = models.IntegerField()
 
+    class Meta:
+       verbose_name = "Stat"
+       verbose_name_plural = "Stat"
 
+    def __str__(self):
+        return f"{self.title}"
+    
+    
 
+class FAQs(models.Model):
+    Question = models.CharField(max_length=150)
+    Answer = models.TextField(blank=False,max_length=200)
+    
+    def __str__(self):
+        return self.Question    
+        
+    class Meta:
+        verbose_name_plural='FAQ'

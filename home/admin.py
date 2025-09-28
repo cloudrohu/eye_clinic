@@ -46,4 +46,14 @@ class AboutDoctorAdmin(admin.ModelAdmin):
     list_display = ['id','name','designation','qualification','experience','registration_no','contact_no','email']
 admin.site.register(About_Doctor, AboutDoctorAdmin)
 
+class StatAdmin(admin.ModelAdmin):
+    list_display =  ['title', 'total',]
+
+
+class FAQsAdmin(admin.ModelAdmin):
+    list_display =  ['Question', 'Answer']
+
+
+admin.site.register(Stat,StatAdmin)
+admin.site.register(FAQs,FAQsAdmin)
 
