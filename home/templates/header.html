@@ -14,7 +14,7 @@
       <!-- Logo + Company Name -->
       <a href="#" class="flex items-center gap-3">
         <!-- Logo Icon (Window Style) -->
-        <img src="{% static ''  %}assets/img/logo/image.png" alt="" class="h-16 w-30">
+        <img src="{{rs.logo.url}}" alt="" class="h-16 w-30">
 
       </a>
 
@@ -25,8 +25,6 @@
         <a href="#about-doctor" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-window-maximize"></i><span>About Doctor</span></a>
         <a href="#services" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
         <a href="#gallery" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
-        <a href="#why-us" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-award"></i><span>Why Us</span></a>
-        <a href="#reviews" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-star"></i><span>Reviews</span></a>
         <a href="#contact" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
         <a href="{% url "contact" %}" class="ml-3 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"><i class="fa-solid fa-envelope-open-text mr-2"></i>Get Quote</a>
       </nav>
@@ -46,14 +44,12 @@
       <div class="flex items-center gap-6">
         <!-- Phone -->
         <a href="tel:+91{{rs.cuntact_no}}" class="flex items-center gap-2 hover:text-indigo-600">
-          <i class="fa-solid fa-phone text-indigo-600"></i>
+          <i class="fa-solid fa-phone text-indigo-600">{{rs.cuntact_no}}</i>
         </a>
         <!-- Email -->
         <a href="mailto:info@alamdarwindows.com" class="flex items-center gap-2 hover:text-indigo-600">
           <i class="fa-solid fa-envelope text-indigo-600"></i>
-          {% for rs in doctor %}
-          <span>info@alamdarwindows.com</span>
-          {% endfor %}
+          <span>{{rs.email}}</span>
 
         </a>
       </div>
@@ -74,7 +70,7 @@
       <!-- Profile Section -->
       <div class="flex flex-col items-center py-6 border-b bg-gray-100 rounded-tr-xl">
         <img src="assets/images/logo/cropped-Currasso_logo-new.webp" alt="Logo" class="h-18 w-20 rounded-full shadow-md">
-        <h3 class="mt-3 font-bold text-lg">Alamdar System Windows</h3>
+        <h3 class="mt-3 font-bold text-lg">{{rs.title}}</h3>
       </div>
 
       <!-- Menu Header -->

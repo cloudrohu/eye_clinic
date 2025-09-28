@@ -41,19 +41,13 @@ def index(request):
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
     unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
     amenities = Service.objects.all()
-    gallery = Media.objects.all().order_by('-id')
+    gallery = Media.objects.all().order_by('-id')[0:8] 
     service = Service.objects.all().order_by('-id')[0:4] 
     stat = Stat.objects.all().order_by('-id')[0:4] 
     faqs = FAQs.objects.all().order_by('-id')[0:4] 
     why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
     healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
     clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
-
-
-
-
-
-
 
     context={
         'doctor':doctor,
@@ -73,11 +67,6 @@ def index(request):
         'why_choose':why_choose,
         'healthtip':healthtip,
         'clientreview':clientreview,
-
-
-
-
-
 
     }
     return render(request,'index.html',context)

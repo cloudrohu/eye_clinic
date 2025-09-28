@@ -22,10 +22,10 @@
       <div>
         <a href="#" class="flex items-center gap-3 mb-6">
           <!-- Logo Icon -->
-        <img src="assets/img/logo/image.png" alt="" class="">
+        <img src="{{rs.logo.url}}" style="height: 70px;" alt="" class="">
         </a>
         <p class="text-gray-400">
-          Delivering high-quality windows, doors, and interiors with modern design and durability.
+          {{rs.title}}
         </p>
       </div>
 
@@ -65,7 +65,7 @@
 
     <!-- Bottom Bar -->
     <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
-      © <span id="year"></span> Alamdar System Windows. All Rights Reserved.
+      © <span id="year"></span> {{rs.title}}. All Rights Reserved.
     </div>
   </div>
 </footer>
