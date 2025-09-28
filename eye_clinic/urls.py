@@ -16,7 +16,9 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
-    path('privacy-policy', views.privacy_policy, name='privacy-policy'),
+    path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
+    path('contact/', views.contact_us, name='contact'),
+    path('gallery/', views.Gallery, name='gallery'),
     path('logout/',RedirectView.as_view(url = '/admin/logout/')),
     
     path('submit-form/', views.submit_form, name='submit_form'),

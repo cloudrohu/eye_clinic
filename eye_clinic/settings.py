@@ -96,6 +96,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# 👇 Ye line yahan add karo (baahar, not in INSTALLED_APPS)
+GOOGLE_PLACES_API_KEY = "AIzaSyBh5VoZXQKCC6v033h4O7wj8eZkz7ROwEM"
+
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 

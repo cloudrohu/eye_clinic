@@ -6,8 +6,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.forms import ModelForm, TextInput, Textarea
 from django.http import request
 from django.utils.safestring import mark_safe
-
-
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -89,7 +88,7 @@ class Service(models.Model):
     class Meta:
         verbose_name_plural='7. Service'
 
-class Gallery(models.Model):   
+class Media(models.Model):   
     web_image = models.ImageField(upload_to='galleryimage/')
     title = models.CharField(max_length=150)
     
@@ -188,3 +187,54 @@ class FAQs(models.Model):
         
     class Meta:
         verbose_name_plural='FAQ'
+
+class Why_Choose(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+
+
+
+    def __str__(self):
+        return self.title
+
+class HealthTip(models.Model):
+    title = models.CharField(max_length=200)
+    short_description = models.TextField(help_text="Short tip description", blank=True)
+    image = models.ImageField(upload_to='health_tips/', blank=True, null=True)
+
+
+    
+    def __str__(self):
+        return self.title
+
+class ClientReview(models.Model):
+    name = models.CharField(max_length=150)
+    city = models.CharField(max_length=100, blank=True)
+    photo = models.ImageField(upload_to="client_reviews/", blank=True, null=True, help_text="Upload client photo (optional)")
+    rating = models.PositiveSmallIntegerField(default=5, help_text="1 to 5 stars")
+    review_text = models.TextField()
+    slug = models.SlugField(max_length=180, unique=True, blank=True)
+    order = models.PositiveIntegerField(default=0, help_text="Lower number shows first")
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order', '-created_at']
+        verbose_name = "Client Review"
+        verbose_name_plural = "Client Reviews"
+
+    def __str__(self):
+        return f"{self.name} ({self.city})"
+    
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.name)[:150]
+            slug = base
+            counter = 1
+            while ClientReview.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{counter}"
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)

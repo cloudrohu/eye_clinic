@@ -21,6 +21,8 @@ from django.urls import reverse
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+import requests
+from django.conf import settings
 from response.models import Appointment
 from datetime import datetime
 from home.models import *
@@ -37,11 +39,19 @@ def index(request):
     location = Location.objects.all().order_by('-id')     
     bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
-    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()[0:3] 
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
     amenities = Service.objects.all()
-    gallery = Gallery.objects.all().order_by('-id')
+    gallery = Media.objects.all().order_by('-id')
     service = Service.objects.all().order_by('-id')[0:4] 
     stat = Stat.objects.all().order_by('-id')[0:4] 
+    faqs = FAQs.objects.all().order_by('-id')[0:4] 
+    why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
+    healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+
+
+
+
 
 
 
@@ -59,6 +69,14 @@ def index(request):
         'gallery':gallery,
         'service':service,
         'stat':stat,
+        'faqs':faqs,
+        'why_choose':why_choose,
+        'healthtip':healthtip,
+        'clientreview':clientreview,
+
+
+
+
 
 
     }
@@ -117,38 +135,110 @@ All the best
     return render(request, 'base.html')
 
 
-@require_POST
-def submit_appointment(request):
-  
-    try:
-        # Get data from the POST request
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        date_str = request.POST.get('date')
-        message = request.POST.get('message', '')
 
-        # Convert the datetime-local string to a proper Python datetime object
-        # Example format: 2024-10-25T14:30
-        appointment_datetime = datetime.fromisoformat(date_str)
 
-        # Create and save the new Appointment object
-        Appointment.objects.create(
-            name=name,
-            email=email,
-            phone=phone,
-            appointment_date=appointment_datetime,
-            message=message
-        )
-        
-        # Display success message (requires Django's messages framework)
-        messages.success(request, "thank-you.html")
 
-    except Exception as e:
-        # Display error message
-        print(f"Error saving appointment: {e}")
-        messages.error(request, "There was an error submitting your request. Please try again.")
+def contact_us(request):
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    slider = Web_Slider.objects.all().order_by('?')[0:6]  
+    overview = Overview.objects.all().order_by('-id')[0:1]  
+    about_us = About_Us.objects.all().order_by('-id')[0:1]  
+    welcome = Welcometo.objects.all().order_by('-id')[0:1]  
+    location = Location.objects.all().order_by('-id')     
+    bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
+    amenities = Service.objects.all()
+    gallery = Gallery.objects.all().order_by('-id')
+    service = Service.objects.all().order_by('-id')[0:4] 
+    stat = Stat.objects.all().order_by('-id')[0:4] 
+    faqs = FAQs.objects.all().order_by('-id')[0:4] 
+    why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
+    healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
 
-    # Redirect the user back to the page they came from (or a success page)
-    # Note: You might need to adjust the redirect URL based on your site structure
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+
+
+
+
+    context={
+        'doctor':doctor,
+        'location':location,
+        'bookingopen':bookingopen,
+        'welcome':welcome,
+        'header':header,
+        'slider':slider,
+        'overview':overview,
+        'about_us':about_us,
+        'unique_Selling_Proposition':unique_Selling_Proposition,
+        'amenities':amenities,
+        'gallery':gallery,
+        'service':service,
+        'stat':stat,
+        'faqs':faqs,
+        'why_choose':why_choose,
+        'healthtip':healthtip,
+        'clientreview':clientreview,
+
+
+
+
+
+
+    }
+    return render(request,'contact.html',context)
+
+def Gallery(request):
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    slider = Web_Slider.objects.all().order_by('?')[0:6]  
+    overview = Overview.objects.all().order_by('-id')[0:1]  
+    about_us = About_Us.objects.all().order_by('-id')[0:1]  
+    welcome = Welcometo.objects.all().order_by('-id')[0:1]  
+    location = Location.objects.all().order_by('-id')     
+    bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
+    amenities = Service.objects.all()
+    gallery = Media.objects.all().order_by('-id')
+    service = Service.objects.all().order_by('-id')[0:4] 
+    stat = Stat.objects.all().order_by('-id')[0:4] 
+    faqs = FAQs.objects.all().order_by('-id')[0:4] 
+    why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
+    healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+
+
+
+
+
+
+
+    context={
+        'doctor':doctor,
+        'location':location,
+        'bookingopen':bookingopen,
+        'welcome':welcome,
+        'header':header,
+        'slider':slider,
+        'overview':overview,
+        'about_us':about_us,
+        'unique_Selling_Proposition':unique_Selling_Proposition,
+        'amenities':amenities,
+        'gallery':gallery,
+        'service':service,
+        'stat':stat,
+        'faqs':faqs,
+        'why_choose':why_choose,
+        'healthtip':healthtip,
+        'clientreview':clientreview,
+
+
+
+
+
+
+    }
+    return render(request,'gallery.html',context)
+

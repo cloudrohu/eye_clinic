@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import *
 
 class SettingAdmin(admin.ModelAdmin):
@@ -27,7 +28,7 @@ admin.site.register(Service, ServiceAdmin)
 
 class GalleryAdmin(admin.ModelAdmin):
     list_display = ['id','web_image','title']
-admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Media, GalleryAdmin)
 
 class BookingopenAdmin(admin.ModelAdmin):
     list_display = ['id','project_name','at','by','landp_arcel','floors','possession','spot_booking_offers','early_buy_discounts','flexipay_for_first','luxurious','priceing']
@@ -52,8 +53,46 @@ class StatAdmin(admin.ModelAdmin):
 
 class FAQsAdmin(admin.ModelAdmin):
     list_display =  ['Question', 'Answer']
+    
+class Why_ChooseAdmin(admin.ModelAdmin):
+    list_display =  ['title', 'description']
+    
+class HealthTipAdmin(admin.ModelAdmin):
+    list_display =  ['title', 'short_description']
+
+
+@admin.register(ClientReview)
+class ClientReviewAdmin(admin.ModelAdmin):
+    list_display = ("name", "city", "rating", "is_active", "order", "created_at", "photo_preview")
+    list_editable = ("is_active", "order", "rating")
+    search_fields = ("name", "city", "review_text")
+    list_filter = ("is_active", "rating")
+    readonly_fields = ("created_at", "photo_preview")
+    prepopulated_fields = {"slug": ("name",)}
+
+    fieldsets = (
+        (None, {
+            "fields": (
+                "name", "city", "slug", "photo", "photo_preview", 
+                "rating", "review_text", "order", "is_active"
+            )
+        }),
+        ("Timestamps", {
+            "fields": ("created_at",),
+            "classes": ("collapse",),
+        }),
+    )
+
+    def photo_preview(self, obj):
+        if obj.photo:
+            return format_html('<img src="{}" style="max-height:80px; border-radius:50%;" />', obj.photo.url)
+        return "(No photo)"
+    photo_preview.short_description = "Photo"
 
 
 admin.site.register(Stat,StatAdmin)
 admin.site.register(FAQs,FAQsAdmin)
+admin.site.register(Why_Choose,Why_ChooseAdmin)
+admin.site.register(HealthTip,HealthTipAdmin)
+
 

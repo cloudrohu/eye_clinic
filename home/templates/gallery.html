@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<style>
+    /* Popup overlay */
+    #popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+    }
+    #popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+     .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .nav-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
+</style>
+
+
+
+  <!-- HERO -->
+  <section class="relative bg-gray-900 text-white">
+    <div class="absolute inset-0">
+      <img src="{% static '' %}assets/img/gallery-hero.jpg" alt="Gallery" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+    <div class="relative z-10 py-28 text-center container mx-auto px-6">
+      <nav class="text-sm mb-6 flex justify-center space-x-2 text-gray-300">
+        <a href="/" class="hover:text-yellow-400">Home</a>
+        <span>/</span>
+        <span class="text-yellow-400 font-semibold">Gallery</span>
+      </nav>
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Our Gallery</h1>
+      <p class="max-w-2xl mx-auto text-lg text-gray-200">
+        Explore our latest projects and product installations.
+      </p>
+    </div>
+  </section>
+<!-- GALLERY GRID -->
+<section class="py-20">
+  <div class="container mx-auto px-6 md:px-12 lg:px-20">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      {% for rs in gallery %}
+      <div class="relative group cursor-pointer">
+        <img src="{{rs.web_image.url}}" alt="{{rs.text}}" 
+             class="rounded-xl shadow-md group-hover:scale-105 transition duration-500 w-full h-[250px] object-cover gallery-img">
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<!-- POPUP -->
+<div id="popup" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+  <!-- Close Button -->
+  <span id="closeBtn" class="absolute top-4 right-6 text-white text-4xl font-bold cursor-pointer">&times;</span>
+  
+  <!-- Image -->
+  <img id="popupImg" src="" alt="Popup Image" class="max-w-[90%] max-h-[80%] object-contain rounded-lg">
+
+  <!-- Nav Buttons -->
+  <span id="prevBtn" class="absolute left-4 text-white text-3xl cursor-pointer">
+    <i class="fa-solid fa-chevron-left"></i>
+  </span>
+  <span id="nextBtn" class="absolute right-4 text-white text-3xl cursor-pointer">
+    <i class="fa-solid fa-chevron-right"></i>
+  </span>
+</div>
+
+<!-- SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("popup");
+  const popupImg = document.getElementById("popupImg");
+  const closeBtn = document.getElementById("closeBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const galleryImages = Array.from(document.querySelectorAll(".gallery-img"));
+
+  let currentIndex = 0;
+
+  // Open popup on image click
+  galleryImages.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      currentIndex = index;
+      popupImg.src = img.src;
+      popup.classList.remove("hidden");
+    });
+  });
+
+  // Close popup
+  closeBtn.addEventListener("click", () => {
+    popup.classList.add("hidden");
+  });
+
+  // Next image
+  nextBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    popupImg.src = galleryImages[currentIndex].src;
+  });
+
+  // Prev image
+  prevBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    popupImg.src = galleryImages[currentIndex].src;
+  });
+
+  // Close when clicking outside image
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.classList.add("hidden");
+    }
+  });
+});
+</script>
+
+
+  {% endblock body %}
