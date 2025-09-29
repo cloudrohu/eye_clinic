@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- ===== HERO SECTION START ===== -->
+  <section class="relative bg-cover bg-center h-[70vh]" 
+           style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 flex flex-col justify-center items-center text-center h-full px-6">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white">About <span class="text-indigo-400">Us</span></h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl">
+        Learn more about who we are, what we do, and why clients trust us.
+      </p>
+    </div>
+  </section>
+  <!-- ===== HERO SECTION END ===== -->
+
+
+<!-- ABOUT DOCTOR START HERE -->
+ {% for rs in doctor %}
+<section class="bg-blue-50 py-10" id="about-doctor">
+  <div class="max-w-6xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      
+      <!-- Doctor Image -->
+      <div class="flex justify-center">
+        <img src="{{rs.photo.url}}" alt="{{rs.name}}"
+             class="rounded-xl shadow-lg w-60 h-72 object-cover border-4 border-white">
+      </div>
+
+      <!-- Doctor Info -->
+      <div class="md:col-span-2 space-y-4">
+        <h2 class="text-3xl font-bold text-gray-900">{{rs.name}}</h2>
+        <p class="text-blue-700 font-medium">{{rs.designation}}</p>
+
+        <p class="text-gray-700 text-sm">
+          <b>Qualification:</b> {{rs.qualification}}
+        </p>
+
+        <p class="text-gray-700 text-sm">
+          <b>Specialization:</b> {{rs.specialization}}
+        </p>
+
+        <p class="text-gray-700 text-sm">
+          <b>Reg. No:</b> {{rs.registration_no}}
+        </p>
+
+        <p class="text-gray-700 text-sm leading-relaxed">
+          {{rs.description}}
+        </p>
+
+        <!-- Contact -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p>📞 <b>+91 {{rs.contact_no}}</b></p>
+            <p>✉️ {{rs.email}}</p>
+          </div>
+          <div>
+            <p>📍 {{rs.clinic_address}}</p>
+            <p>🕒 Mon–Sun: {{rs.timming}}</p>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3 pt-3">
+          <a href="tel:+91{{rs.contact_no}}" class="bg-blue-600 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-700 transition">📞 Call Now</a>
+          <a href="#appointment-form" class="bg-green-600 text-white px-5 py-2 rounded-lg shadow hover:bg-green-700 transition">📝 Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  {% endfor %}
+<!-- ABOUT DOCTOR END HERE -->
+
+
+
+  <!-- ===== MISSION SECTION START ===== -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 lg:px-16 text-center">
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">Our <span class="text-indigo-600">Mission</span></h2>
+        {% for rs in about_us %}
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+        {{rs.mission}}
+      </p>
+        {% endfor %}
+
+    </div>
+  </section>
+  <!-- ===== MISSION SECTION END ===== -->
+
+
+  <!-- ===== VISION SECTION START ===== -->
+  <section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-6 lg:px-16 text-center">
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-6">Our <span class="text-indigo-600">Vision</span></h2>
+        {% for rs in about_us %}
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+        {{rs.vision}}
+        {% endfor %}
+      </p>
+    </div>
+  </section>
+  <!-- ===== VISION SECTION END ===== -->
+{% endblock body %}

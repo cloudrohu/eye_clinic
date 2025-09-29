@@ -138,7 +138,7 @@ def contact_us(request):
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
     unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
     amenities = Service.objects.all()
-    gallery = Gallery.objects.all().order_by('-id')
+    gallery = Media.objects.all().order_by('-id')
     service = Service.objects.all().order_by('-id')[0:4] 
     stat = Stat.objects.all().order_by('-id')[0:4] 
     faqs = FAQs.objects.all().order_by('-id')[0:4] 
@@ -230,4 +230,61 @@ def Gallery(request):
 
     }
     return render(request,'gallery.html',context)
+
+def about_us(request): 
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    about_us = About_Us.objects.all().order_by('-id')[0:1] 
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+
+
+
+    context={
+        'header':header,
+        'about_us':about_us,
+        'doctor':doctor,
+
+
+    }
+    return render(request,'about.html',context)
+
+def about_doctor(request): 
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+
+
+    context={
+        'header':header,
+        'doctor':doctor,
+
+    }
+    return render(request,'about_doctor.html',context)
+
+def services(request): 
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    service = Service.objects.all().order_by('-id')
+
+
+    context={
+        'header':header,
+        'service':service,
+
+    }
+    return render(request,'services.html',context)
+
+def reviews(request): 
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+
+
+
+    
+
+    context={
+        'header':header,
+        'clientreview':clientreview,
+
+
+
+    }
+    return render(request,'reviews.html',context)
 

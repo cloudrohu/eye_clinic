@@ -18,7 +18,11 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
     path('contact/', views.contact_us, name='contact'),
+    path('about/', views.about_us, name='about'),
     path('gallery/', views.Gallery, name='gallery'),
+    path('about-doctor/', views.about_doctor, name='about-doctor'),
+    path('services/', views.services, name='services'),
+    path('reviews/', views.reviews, name='reviews'),
     path('logout/',RedirectView.as_view(url = '/admin/logout/')),
     
     path('submit-form/', views.submit_form, name='submit_form'),

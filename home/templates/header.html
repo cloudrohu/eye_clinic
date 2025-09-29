@@ -21,11 +21,11 @@
       <!-- Desktop Nav with Icons and Dividers -->
       <nav class="hidden lg:flex items-center font-medium">
         <a href="/" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="#about" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-circle-info"></i><span>About</span></a>
-        <a href="#about-doctor" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-window-maximize"></i><span>About Doctor</span></a>
-        <a href="#services" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
-        <a href="#gallery" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
-        <a href="#contact" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
+        <a href="{% url "about" %}" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-circle-info"></i><span>About</span></a>
+        <a href="{% url "about-doctor" %}" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-window-maximize"></i><span>About Doctor</span></a>
+        <a href="{% url "services" %}" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+        <a href="{% url "gallery" %}" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
+        <a href="{% url "contact" %}" class="flex items-center gap-2 nav-link px-3 border-r text-gray-700"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
         <a href="{% url "contact" %}" class="ml-3 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition"><i class="fa-solid fa-envelope-open-text mr-2"></i>Get Quote</a>
       </nav>
 
@@ -84,13 +84,13 @@
       <!-- Menu Links -->
       <nav class="flex flex-col font-medium py-4">
         <a href="/" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-house"></i><span>Home</span></a>
-        <a href="#about" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-circle-info"></i><span>About</span></a>
-        <a href="#about-doctor" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-window-maximize"></i><span>about doctor</span></a>
-        <a href="#services" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
-        <a href="#gallery" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
-        <a href="#reviews" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-star"></i><span>Reviews</span></a>
-        <a href="#contact" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
-        <a href="#" class="mt-4 mx-4 bg-indigo-600 text-white text-center py-3 rounded-md hover:bg-indigo-700 transition"><i class="fa-solid fa-envelope-open-text mr-2"></i>Get Quote</a>
+        <a href="{% url "about" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-circle-info"></i><span>About</span></a>
+        <a href="{% url "about-doctor" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-window-maximize"></i><span>about doctor</span></a>
+        <a href="{% url "services" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-briefcase"></i><span>Services</span></a>
+        <a href="{% url "gallery" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
+        <a href="{% url "reviews" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-star"></i><span>Reviews</span></a>
+        <a href="{% url "contact" %}" class="drawer-link flex items-center gap-3 border-b px-5 py-3 text-gray-700"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
+        <a href="{% url "contact" %}" class="mt-4 mx-4 bg-indigo-600 text-white text-center py-3 rounded-md hover:bg-indigo-700 transition"><i class="fa-solid fa-envelope-open-text mr-2"></i>Get Quote</a>
       </nav>
     </div>
   </div>
