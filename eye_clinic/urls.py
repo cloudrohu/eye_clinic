@@ -23,6 +23,8 @@ urlpatterns = [
     path('about-doctor/', views.about_doctor, name='about-doctor'),
     path('services/', views.services, name='services'),
     path('reviews/', views.reviews, name='reviews'),
+    path('appointment/', views.appointment, name='appointment'),
+    
     path('logout/',RedirectView.as_view(url = '/admin/logout/')),
     
     path('submit-form/', views.submit_form, name='submit_form'),

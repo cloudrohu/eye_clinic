@@ -235,6 +235,8 @@ def about_us(request):
     header = Setting.objects.all().order_by('-id')[0:1]  
     about_us = About_Us.objects.all().order_by('-id')[0:1] 
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+    welcome = Welcometo.objects.all().order_by('-id')[0:1]  
+
 
 
 
@@ -242,19 +244,62 @@ def about_us(request):
         'header':header,
         'about_us':about_us,
         'doctor':doctor,
+        'welcome':welcome,
+
 
 
     }
     return render(request,'about.html',context)
 
 def about_doctor(request): 
+
+
     header = Setting.objects.all().order_by('-id')[0:1]  
+    slider = Web_Slider.objects.all().order_by('?')[0:6]  
+    overview = Overview.objects.all().order_by('-id')[0:1]  
+    about_us = About_Us.objects.all().order_by('-id')[0:1]  
+    welcome = Welcometo.objects.all().order_by('-id')[0:1]  
+    location = Location.objects.all().order_by('-id')     
+    bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
     doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
+    amenities = Service.objects.all()
+    gallery = Media.objects.all().order_by('-id')
+    service = Service.objects.all().order_by('-id')[0:4] 
+    stat = Stat.objects.all().order_by('-id')[0:4] 
+    faqs = FAQs.objects.all().order_by('-id')[0:4] 
+    why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
+    healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+
+
+
+
+
 
 
     context={
-        'header':header,
         'doctor':doctor,
+        'location':location,
+        'bookingopen':bookingopen,
+        'welcome':welcome,
+        'header':header,
+        'slider':slider,
+        'overview':overview,
+        'about_us':about_us,
+        'unique_Selling_Proposition':unique_Selling_Proposition,
+        'amenities':amenities,
+        'gallery':gallery,
+        'service':service,
+        'stat':stat,
+        'faqs':faqs,
+        'why_choose':why_choose,
+        'healthtip':healthtip,
+        'clientreview':clientreview,
+
+
+
+
 
     }
     return render(request,'about_doctor.html',context)
@@ -288,3 +333,55 @@ def reviews(request):
     }
     return render(request,'reviews.html',context)
 
+
+def appointment(request):
+    header = Setting.objects.all().order_by('-id')[0:1]  
+    slider = Web_Slider.objects.all().order_by('?')[0:6]  
+    overview = Overview.objects.all().order_by('-id')[0:1]  
+    about_us = About_Us.objects.all().order_by('-id')[0:1]  
+    welcome = Welcometo.objects.all().order_by('-id')[0:1]  
+    location = Location.objects.all().order_by('-id')     
+    bookingopen = Bookingopen.objects.all().order_by('-id')[0:1]  
+    doctor = About_Doctor.objects.all().order_by('-id')[0:1]  
+    unique_Selling_Proposition = Unique_Selling_Proposition.objects.all()
+    amenities = Service.objects.all()
+    gallery = Media.objects.all().order_by('-id')
+    service = Service.objects.all().order_by('-id')[0:4] 
+    stat = Stat.objects.all().order_by('-id')[0:4] 
+    faqs = FAQs.objects.all().order_by('-id')[0:4] 
+    why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
+    healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
+    clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+
+
+
+
+
+
+
+    context={
+        'doctor':doctor,
+        'location':location,
+        'bookingopen':bookingopen,
+        'welcome':welcome,
+        'header':header,
+        'slider':slider,
+        'overview':overview,
+        'about_us':about_us,
+        'unique_Selling_Proposition':unique_Selling_Proposition,
+        'amenities':amenities,
+        'gallery':gallery,
+        'service':service,
+        'stat':stat,
+        'faqs':faqs,
+        'why_choose':why_choose,
+        'healthtip':healthtip,
+        'clientreview':clientreview,
+
+
+
+
+
+
+    }
+    return render(request,'appointment.html',context)
