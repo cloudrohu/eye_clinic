@@ -24,10 +24,12 @@ from django.contrib import messages
 import requests
 from django.conf import settings
 from response.models import Appointment
-from datetime import datetime
+from datetime import datetime, timezone
 from home.models import *
 from response.models import Response
 from django.utils.decorators import method_decorator
+from django.utils import timezone
+from datetime import datetime
 
 
 def index(request):
@@ -129,6 +131,52 @@ All the best
 
     return render(request, 'contact.html')
 
+
+def submit_appointment(request):
+    if request.method == "POST":
+        name = request.POST.get("name", "").strip()
+        email = request.POST.get("email", "").strip()
+        phone = request.POST.get("phone", "").strip()
+        date = request.POST.get("date")
+        time = request.POST.get("time")
+        message = request.POST.get("message", "").strip()
+
+        if not (name and email and phone and date and time):
+            messages.error(request, "❌ All fields are required!")
+            return redirect("appointment_page")
+
+        try:
+            appointment_datetime = datetime.strptime(f"{date} {time}", "%Y-%m-%d %H:%M")
+        except ValueError:
+            messages.error(request, "❌ Invalid date or time!")
+            return redirect("appointment_page")
+
+        # Convert to timezone aware datetime
+        appointment_datetime = timezone.make_aware(appointment_datetime)
+
+        # Prevent past appointments
+        if appointment_datetime < timezone.now():
+            messages.error(request, "❌ You cannot book a past date/time!")
+            return redirect("appointment_page")
+
+        Appointment.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            appointment_date=appointment_datetime,
+            message=message
+        )
+
+        messages.success(request, "✅ Appointment booked successfully!")
+        return redirect("appointment_confirm")
+
+    return redirect("appointment_page")
+
+
+
+# Confirmation page
+def appointment_confirm(request):
+    return render(request, "appointment_confirm.html")
 
 
 

@@ -24,9 +24,9 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('reviews/', views.reviews, name='reviews'),
     path('appointment/', views.appointment, name='appointment'),
-    
+    path("submit-appointment/", views.submit_appointment, name="submit_appointment"),
+    path("appointment-confirm/", views.appointment_confirm, name="appointment_confirm"),
     path('logout/',RedirectView.as_view(url = '/admin/logout/')),
-    
     path('submit-form/', views.submit_form, name='submit_form'),
     path('thank-you/', lambda request: render(request, 'thank_you.html'), name='thank_you'),
     path('thank-you-for-appointment/', lambda request: render(request, 'thank-you.html'), name='thank-you-for-appointment'),
