@@ -26,8 +26,6 @@
         <img src="{{rs.web_image.url}}" alt="About Us" class="rounded-2xl shadow-lg h-[480px] w-full object-cover">
         {% endfor %}
              <div class="absolute -bottom-6 -left-6 bg-indigo-600 text-white p-6 rounded-xl shadow-xl">
-          <h3 class="text-xl font-bold">16+ Years</h3>
-          <p class="text-sm">Of Experience</p>
         </div>
       </div>
 
@@ -37,33 +35,12 @@
           About <span class="text-indigo-600">Our Company</span>
         </h2>
         <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-          At <span class="font-semibold">Cloud Rohu</span>, we specialize in providing high-quality real estate and digital solutions. 
-          Our team is committed to excellence and customer satisfaction. <br><br>
-          With years of experience, we continue to deliver innovative projects and build strong relationships with our clients.
+          {{rs.details}}
         </p>
 
-        <!-- USP List -->
-        <ul class="grid sm:grid-cols-2 gap-4 mb-8">
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-check-double text-indigo-600 mt-1"></i>
-            <span>Trusted Expertise</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-check-double text-indigo-600 mt-1"></i>
-            <span>Innovative Solutions</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-check-double text-indigo-600 mt-1"></i>
-            <span>Customer Focus</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-check-double text-indigo-600 mt-1"></i>
-            <span>Global Reach</span>
-          </li>
-        </ul>
 
         <!-- CTA Button -->
-        <a href="contact.html">
+        <a href="{% url "contact" %}">
           <button class="bg-indigo-600 px-6 py-3 rounded-lg text-white shadow-lg hover:shadow-2xl hover:opacity-80 transition">
             Contact Us
           </button>
