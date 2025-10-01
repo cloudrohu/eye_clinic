@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 class ResponseAdmin(admin.ModelAdmin):
-    list_display = ('name','email', 'phone','created_at','updated_at',)
+    list_display = ('name','email', 'phone','message','created_at','updated_at',)
 admin.site.register(Response, ResponseAdmin)
 
 class AppointmentAdmin(admin.ModelAdmin):

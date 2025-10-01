@@ -95,11 +95,13 @@ def submit_form(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
-        phone = request.POST.get('mobile')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+
  
 
          # Save to DB
-        Response.objects.create(name=name, email=email, phone=phone)
+        Response.objects.create(name=name, email=email, phone=phone, message=message)
 
         # Send "Thank You" email to user
         subject = 'Thank You for Contacting '
@@ -125,7 +127,7 @@ All the best
             print("Error sending email:", e)
         return redirect('thank_you')  # Make sure this name matches urls.py
 
-    return render(request, 'base.html')
+    return render(request, 'contact.html')
 
 
 
