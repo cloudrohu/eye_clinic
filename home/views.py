@@ -48,6 +48,8 @@ def index(request):
     why_choose = Why_Choose.objects.all().order_by('-id')[0:6] 
     healthtip = HealthTip.objects.all().order_by('-id')[0:6] 
     clientreview = ClientReview.objects.all().order_by('-id')[0:6] 
+    tpa = TPA.objects.all().order_by('-id') 
+
 
     context={
         'doctor':doctor,
@@ -67,6 +69,8 @@ def index(request):
         'why_choose':why_choose,
         'healthtip':healthtip,
         'clientreview':clientreview,
+        'tpa':tpa,
+
 
     }
     return render(request,'index.html',context)

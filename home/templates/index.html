@@ -41,18 +41,18 @@
     
     <!-- Left Image -->
     <div class="relative">
-      <img src="{{rs.web_image.url}}" alt="About Us" class="rounded-2xl shadow-lg lg:ml-40 h-[480px] w-300">
+      <img src="{{rs.web_image.url}}" alt="About Us" class="rounded-2xl shadow-lg lg:ml-20 h-[480px] w-[450px]">
       <div class="absolute -bottom-6 -left-6 bg-indigo-600 text-white p-6 rounded-xl shadow-xl">
       
       </div>
     </div>
 
     <!-- Right Content -->
-    <div>
+    <div class="mr-10">
       <h2 class="text-4xl font-extrabold text-gray-900 mb-6 mr-[40px]">About <span class="text-indigo-600">{{rs.title}}</span></h2>
       <p class="text-lg text-gray-700 mb-6 leading-relaxed">
         At <span class="font-semibold">{{rs.title}}</span>, {{rs.details |truncatechars:300}} <br><br>
-      {{rs.readmore |truncatechars:400}}
+      {{rs.readmore |truncatechars:200}}
       </p>
 
       <ul class="grid sm:grid-cols-2 gap-4 mb-8">
@@ -65,7 +65,7 @@
 
       </ul>
 
-      <a href="about">
+      <a href="{% url "about" %}">
       <button class="bg-indigo-600 p-4 rounded-lg text-white shadow-lg hover:shadow-2xl hover:opacity-60">Now More</button>
       </a>
    
@@ -818,6 +818,114 @@
   <!-- ===== CONTACT SECTION END ===== -->
 
 
+
+<!-- ===== TPA LOGO SLIDER SECTION ===== -->
+<TPA>
+<section id="tpa" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Our TPA Partners</h2>
+      <p class="text-lg text-gray-600 mt-2">
+        We are associated with leading TPAs for seamless cashless healthcare services.
+      </p>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper tpaSwiper">
+      <div class="swiper-wrapper items-center">
+
+        {% for rs in tpa %}
+        <div class="swiper-slide flex justify-center">
+          <img src="{{rs.web_image.url}}" 
+              alt="{{rs.title}}"
+              class="w-44 h-28 md:w-80 md:h-32 lg:w-60 lg:h-36 
+                     bg-white rounded-xl border border-gray-200 
+                     shadow-md hover:shadow-lg hover:scale-105 
+                     transition-transform duration-300 ease-in-out 
+                     object-contain cursor-pointer p-3"
+              onclick="openTpaPopup('{{rs.title}}','{{rs.web_image.url}}','{{rs.details}}')">
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Popup -->
+<div id="tpaPopup" class="fixed inset-0 hidden bg-black bg-opacity-70 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300">
+  <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl max-w-lg w-full relative transform scale-95 opacity-0 transition-all duration-300" id="tpaContent">
+    
+    <!-- Close Button -->
+    <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition" onclick="closeTpaPopup()">
+      <i class="fa-solid fa-xmark fa-xl"></i>
+    </button>
+
+    <!-- Content -->
+    <div class="p-4 text-center">
+      <img id="popupLogo" src="" alt="TPA Logo" class="w-full h-44 mx-auto mb-6 object-contain rounded-lg shadow">
+      <h3 id="popupTitle" class="text-2xl font-bold text-gray-900 mb-3"></h3>
+      <p id="popupDesc" class="text-gray-600 leading-relaxed"></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Dependencies -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+
+<script>
+  // Swiper init
+  var swiper = new Swiper(".tpaSwiper", {
+    slidesPerView: 4,
+    spaceBetween: 40,
+    loop: true,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+    speed: 4000,
+    breakpoints: {
+      320: { slidesPerView: 2, spaceBetween: 20 },
+      640: { slidesPerView: 3, spaceBetween: 30 },
+      1024: { slidesPerView: 5, spaceBetween: 40 },
+    }
+  });
+
+  // Popup functions with animation
+  function openTpaPopup(title, logo, desc) {
+    document.getElementById('popupTitle').innerText = title;
+    document.getElementById('popupLogo').src = logo;
+    document.getElementById('popupDesc').innerText = desc;
+
+    let popup = document.getElementById('tpaPopup');
+    let content = document.getElementById('tpaContent');
+    popup.classList.remove('hidden');
+
+    setTimeout(() => {
+      content.classList.remove("scale-95", "opacity-0");
+      content.classList.add("scale-100", "opacity-100");
+    }, 50);
+  }
+
+  function closeTpaPopup() {
+    let content = document.getElementById('tpaContent');
+    content.classList.remove("scale-100", "opacity-100");
+    content.classList.add("scale-95", "opacity-0");
+
+    setTimeout(() => {
+      document.getElementById('tpaPopup').classList.add('hidden');
+    }, 300);
+  }
+</script>
+
+</TPA>
+<!-- ===== TPA LOGO SLIDER SECTION ===== -->
 
 
 

@@ -89,10 +89,14 @@ class ClientReviewAdmin(admin.ModelAdmin):
         return "(No photo)"
     photo_preview.short_description = "Photo"
 
+class TPAAdmin(admin.ModelAdmin):
+    list_display =  ['title', 'details']
+    
 
 admin.site.register(Stat,StatAdmin)
 admin.site.register(FAQs,FAQsAdmin)
 admin.site.register(Why_Choose,Why_ChooseAdmin)
+admin.site.register(TPA,TPAAdmin)
 admin.site.register(HealthTip,HealthTipAdmin)
 
 

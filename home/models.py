@@ -241,3 +241,14 @@ class ClientReview(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+
+
+
+class TPA(models.Model):
+    web_image = models.ImageField(upload_to='TPAimage/')
+    title = models.CharField(max_length=50)
+    details= models.TextField(blank=False,max_length=50)
+
+    def __str__(self):
+        return self.title
